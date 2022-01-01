@@ -2,22 +2,14 @@
 #   or bit by bit. 
 
 # Text after a pound sign like this is called a "comment". Comments get ignored
-#   by the interpreter (do not get executed). Comments are used to document code,  
-#   provide instructions, etc. In RStudio the keystroke Ctrl-Shift-C can be used to 
-#   Comment or Uncomment a line. 
+#   by the interpreter (do not get executed). Comments are used to document   
+#   code, provide instructions, etc. In RStudio the keystroke Ctrl-Shift-C can  
+#   be used to Comment or Uncomment a line. 
 
 
-# Run this library command (select it and use the button to the upper-right).
-# We will use Tidyverse whenever we use R. The command below loads a set of packages
-#   so they are available throughout a project. This must be run for any of the
-#   subsequent code to work. 
-library(tidyverse)
-
-
-# Replace the text and run the command. This will assign your name to an object 
-#   for use in captions. 
+# Replace the quoted text and run the command. This will assign your name to an 
+#   object for use in captions. 
 myname <-  "Your Name"
-
 
 
 ##### PRIMER 1 - Programming Basics #####
@@ -102,6 +94,8 @@ head(trees)
 
 ##### Guided Deep-Dive #####
 
+## NOTICE: This code was updated on 8/31.
+
 # 7. Trump Approval Estimates Over Time
 # Read the description in the Google Doc before proceeding. 
 
@@ -112,12 +106,16 @@ head(trees)
 #   only include the rows for All polls, create a new variable FixedDate that's 
 #   properly sortable, and then assign the resulting data to an object named djt. 
 # Run the following 4 lines (2 commands) to import the data and view it. 
-djt <- read_csv("https://projects.fivethirtyeight.com/trump-approval-data/approval_topline.csv") %>%
+approve <- read_csv("https://projects.fivethirtyeight.com/biden-approval-data/approval_topline.csv") %>%
   filter(subgroup=="All polls") %>%
   mutate(FixedDate = as.Date(modeldate, format="%m/%d/%Y"))
-View(djt)
+View(approve)
 
 # Create a line graph to visualize estimated approval over time. Once again, add 
 #   code to include your name as a caption.
-ggplot(data=djt) +
+ggplot(data=approve) +
   geom_line(aes(y=approve_estimate, x=FixedDate)) 
+
+# Note: If you want to do this for Trump, just modify the path above from
+#    /biden-approval-data/ to /trump-approval-data/
+
